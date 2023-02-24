@@ -1,4 +1,4 @@
-package airport_departure_queuing;
+package airport_departure_queuing.common;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 public class CSVReader {
     public String filepath;
     public String delimiter;
-    private BufferedReader br;
+    protected BufferedReader br;
 
     public CSVReader(String filepath) throws FileNotFoundException {
         this(filepath, ",");
@@ -22,6 +22,9 @@ public class CSVReader {
 
     public String[] readLine() throws IOException {
         String line = br.readLine();
+        if (line == null) {
+            return null;
+        }
         return line.split(delimiter);
     }
 }
