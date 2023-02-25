@@ -4,23 +4,34 @@ import java.time.Duration;
 import java.util.Date;
 
 public class Flight {
-    private final Date pushbackTime;
+    private final long pushbackTimestamp;
     private final String airline;
     private final Duration unimpededTime;
     private final Duration taxiOutTime;
     private final Duration delay;
-    private Date wheelOffTime;
+    private long wheelOffTimestamp;
 
-    public Flight(Date pushbackTime, String airline, Duration unimpededTime, Duration taxiOutTime, Duration delay) {
-        this.pushbackTime = pushbackTime;
+    public Flight(long pushbackTimestamp, String airline, Duration unimpededTime, Duration taxiOutTime, Duration delay) {
+        this.pushbackTimestamp = pushbackTimestamp;
         this.airline = airline;
         this.unimpededTime = unimpededTime;
         this.taxiOutTime = taxiOutTime;
         this.delay = delay;
     }
 
-    public Date getPushbackTime() {
-        return pushbackTime;
+    public String toString() {
+        return "Flight{"
+                + "pushbackTimestamp=" + new Date(pushbackTimestamp)
+                + ", airline='" + airline + '\''
+                + ", unimpededTime=" + unimpededTime
+                + ", taxiOutTime=" + taxiOutTime
+                + ", delay=" + delay
+                + ", wheelOffTimestamp=" + new Date(wheelOffTimestamp)
+                + '}';
+    }
+
+    public long getPushbackTimestamp() {
+        return pushbackTimestamp;
     }
 
     public String getAirline() {
@@ -39,11 +50,11 @@ public class Flight {
         return delay;
     }
 
-    public void setWheelOffTime(Date wheelOffTime) {
-        this.wheelOffTime = wheelOffTime;
+    public long getWheelOffTimestamp() {
+        return wheelOffTimestamp;
     }
 
-    public Date getWheelOffTime() {
-        return wheelOffTime;
+    public void setWheelOffTimestamp(long wheelOffTimestamp) {
+        this.wheelOffTimestamp = wheelOffTimestamp;
     }
 }
