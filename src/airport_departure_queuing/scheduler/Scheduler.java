@@ -12,5 +12,6 @@ public abstract class Scheduler {
         this.taxi = taxi;
     }
 
+    public Scheduler() { }
     public abstract void schedule(long currentTimestamp) throws IOException, ParseException;
 }
