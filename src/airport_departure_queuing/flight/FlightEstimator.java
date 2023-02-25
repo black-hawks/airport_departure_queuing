@@ -15,7 +15,7 @@ public class FlightEstimator {
 
     public static long estimateWheelOffTimestamp(Flight flight, double queuingDelay) {
         Duration alphaRT = Duration.ofSeconds((long) (queuingDelay * 60));
-        Instant wheelOffTimestampInstant = Instant.ofEpochMilli(flight.getWheelOffTimestamp());
+        Instant wheelOffTimestampInstant = Instant.ofEpochMilli(flight.getActualWheelOffTimestamp());
         Instant newWheelOffTimestamp = wheelOffTimestampInstant.plus(alphaRT);
         return newWheelOffTimestamp.toEpochMilli();
     }

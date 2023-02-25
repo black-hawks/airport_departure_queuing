@@ -35,13 +35,13 @@ public class FixedSizeQueue extends Queue {
             currNode.nextNode = newNode;
             newNode.nextNode = null;
         }
-        long newFlightEstimate = flight.getWheelOffTimestamp();
-        long previousFlightEstimate = currNode.flight.getWheelOffTimestamp();
+        long newFlightEstimate = flight.getActualWheelOffTimestamp();
+        long previousFlightEstimate = currNode.flight.getActualWheelOffTimestamp();
         if (newFlightEstimate == previousFlightEstimate) {
-            Instant wheelOffInstant = Instant.ofEpochMilli(flight.getWheelOffTimestamp());
+            Instant wheelOffInstant = Instant.ofEpochMilli(flight.getActualWheelOffTimestamp());
             Duration delay = Duration.ofMinutes(1);
             long newWheelOffTimestamp = wheelOffInstant.plus(delay).toEpochMilli();
-            newNode.flight.setWheelOffTimestamp(newWheelOffTimestamp);
+            newNode.flight.setActualWheelOffTimestamp(newWheelOffTimestamp);
         }
         currentQueueLength++;
 //        return true;
