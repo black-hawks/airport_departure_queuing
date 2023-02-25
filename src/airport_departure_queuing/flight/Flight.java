@@ -9,7 +9,9 @@ public class Flight {
     private final Duration unimpededTime;
     private final Duration taxiOutTime;
     private final Duration delay;
-    private long wheelOffTimestamp;
+    private long expectedWheelOffTimestamp;
+
+    private long actualWheelOffTimestamp;
 
     public Flight(long pushbackTimestamp, String airline, Duration unimpededTime, Duration taxiOutTime, Duration delay) {
         this.pushbackTimestamp = pushbackTimestamp;
@@ -26,7 +28,8 @@ public class Flight {
                 + ", unimpededTime=" + unimpededTime
                 + ", taxiOutTime=" + taxiOutTime
                 + ", delay=" + delay
-                + ", wheelOffTimestamp=" + new Date(wheelOffTimestamp)
+                + ", expectedWheelOffTimestamp=" + new Date(expectedWheelOffTimestamp)
+                + ", actualWheelOffTimestamp=" + new Date(actualWheelOffTimestamp)
                 + '}';
     }
 
@@ -50,11 +53,19 @@ public class Flight {
         return delay;
     }
 
-    public long getWheelOffTimestamp() {
-        return wheelOffTimestamp;
+    public long getExpectedWheelOffTimestamp() {
+        return expectedWheelOffTimestamp;
     }
 
-    public void setWheelOffTimestamp(long wheelOffTimestamp) {
-        this.wheelOffTimestamp = wheelOffTimestamp;
+    public void setExpectedWheelOffTimestamp(long expectedWheelOffTimestamp) {
+        this.expectedWheelOffTimestamp = expectedWheelOffTimestamp;
+    }
+
+    public long getActualWheelOffTimestamp() {
+        return actualWheelOffTimestamp;
+    }
+
+    public void setActualWheelOffTimestamp(long actualWheelOffTimestamp) {
+        this.actualWheelOffTimestamp = actualWheelOffTimestamp;
     }
 }

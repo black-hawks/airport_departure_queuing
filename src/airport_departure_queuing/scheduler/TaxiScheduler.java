@@ -26,7 +26,8 @@ public class TaxiScheduler extends Scheduler {
         if (pushbackTimestamp <= currentTimestamp) {
             Flight flight = reader.getFlight();
             long wheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(flight);
-            flight.setWheelOffTimestamp(wheelOffTimestamp);
+            flight.setExpectedWheelOffTimestamp(wheelOffTimestamp);
+            flight.setActualWheelOffTimestamp(wheelOffTimestamp);
             logger.debug("Processing " + flight);
             taxi.addFlight(flight);
             logger.debug(taxi.toString());

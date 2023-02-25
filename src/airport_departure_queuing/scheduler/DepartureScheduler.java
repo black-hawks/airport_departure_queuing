@@ -13,7 +13,7 @@ public class DepartureScheduler extends Scheduler {
 
     @Override
     public void schedule(long currentTimestamp) {
-        while (taxi.peek().getWheelOffTimestamp() <= currentTimestamp) {
+        while (taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
             taxi.deleteAtStart();
             logger.debug(taxi.toString());
         }
