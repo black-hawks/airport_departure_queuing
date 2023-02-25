@@ -2,24 +2,23 @@ package airport_departure_queuing.common;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Date;
 
 public class Simulator {
-    private Date currentTime;
-    private Duration timeIncrement;
+    private final Duration timeIncrement;
+    private long currentTimestamp;
 
-    public Simulator(Date currentTime, Duration timeIncrement) {
-        this.currentTime = currentTime;
+    public Simulator(long currentTimestamp, Duration timeIncrement) {
+        this.currentTimestamp = currentTimestamp;
         this.timeIncrement = timeIncrement;
     }
 
     public void simulateTime() {
-        Instant currentTimeInstant = currentTime.toInstant();
+        Instant currentTimeInstant = Instant.ofEpochMilli(currentTimestamp);
         Instant newTimeInstant = currentTimeInstant.plus(timeIncrement);
-        currentTime = Date.from(newTimeInstant);
+        currentTimestamp = newTimeInstant.toEpochMilli();
     }
 
-    public Date getCurrentTime() {
-        return currentTime;
+    public long getCurrentTimestamp() {
+        return currentTimestamp;
     }
 }

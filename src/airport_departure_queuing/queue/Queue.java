@@ -1,8 +1,6 @@
-package Queue;
+package airport_departure_queuing.queue;
 
-import airport_departure_queuing.Flight;
-
-import java.util.Date;
+import airport_departure_queuing.flight.Flight;
 
 public class Queue {
 
@@ -12,22 +10,21 @@ public class Queue {
     headNode = null;
   }
 
-  public void insertAtStart(Flight flight, Date estimateTakeoffTime) {
-    Node newNode = new Node(flight, estimateTakeoffTime);
+  public void insertAtStart(Flight flight) {
+    Node newNode = new Node(flight);
     newNode.nextNode = headNode;
     headNode = newNode;
   }
 
-  public void insertAtEnd(Flight flight, Date estimateTakeoffTime){
-    if(headNode == null){
-      insertAtStart(flight, estimateTakeoffTime);
-    }
-    else{
+  public void insertAtEnd(Flight flight) {
+    if (headNode == null) {
+      insertAtStart(flight);
+    } else {
       Node currNode = headNode;
-      while(currNode.nextNode != null){
+      while (currNode.nextNode != null) {
         currNode = currNode.nextNode;
       }
-      Node newNode = new Node(flight, estimateTakeoffTime);
+      Node newNode = new Node(flight);
       currNode.nextNode = newNode;
       newNode.nextNode = null;
     }
@@ -52,10 +49,10 @@ public class Queue {
       System.out.println("List is Empty");
     } else {
       while(currNode.nextNode != null) {
-        System.out.print(currNode.flight.getFlightNumber() + " -> ");
+        System.out.print(currNode.flight.getAirline() + " -> ");
         currNode = currNode.nextNode;
       }
-      System.out.print(currNode.flight.getFlightNumber());
+      System.out.print(currNode.flight.getAirline());
     }
     System.out.println("\n");
   }
