@@ -10,7 +10,7 @@ public class CSVWriter {
         Date expectedwo = new Date(expectedWheelOff);
         Date actualwo = new Date(actualWheelOff);
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat(Constants.flightDateFormat2);
         String formattedpbtime = format.format(pbtime);
         String formattedexpectedwo = format.format(expectedwo);
         String formattedactualwo = format.format(actualwo);
