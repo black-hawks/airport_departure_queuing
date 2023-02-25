@@ -1,11 +1,11 @@
-package airport_departure_queuing;
+package airport_departure_queuing.common;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
 public class Simulator {
-    public Date currentTime;
+    private Date currentTime;
     private Duration timeIncrement;
 
     public Simulator(Date currentTime, Duration timeIncrement) {
@@ -17,5 +17,9 @@ public class Simulator {
         Instant currentTimeInstant = currentTime.toInstant();
         Instant newTimeInstant = currentTimeInstant.plus(timeIncrement);
         currentTime = Date.from(newTimeInstant);
+    }
+
+    public Date getCurrentTime() {
+        return currentTime;
     }
 }
