@@ -33,6 +33,7 @@ public class Main {
                 long currentTimestamp = simulator.getCurrentTimestamp();
                 taxiScheduler.schedule(currentTimestamp);
                 departureScheduler.schedule(currentTimestamp);
+                // wheelOffScheduler.schedule(currentTimestamp)
                 simulator.simulateTime();
             }
         } catch (IOException | ParseException e) {
@@ -40,3 +41,6 @@ public class Main {
         }
     }
 }
+
+// Departure queue and its scheduling
+// Metrics collection and graphs, store expected and actual estimations, time for entire simulation
