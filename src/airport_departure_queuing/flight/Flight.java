@@ -1,7 +1,5 @@
 package airport_departure_queuing.flight;
 
-import airport_departure_queuing.common.Metrics;
-
 import java.time.Duration;
 import java.util.Date;
 
@@ -43,7 +41,6 @@ public class Flight {
 
     public void setWheelOffTime(Date wheelOffTime) {
         this.wheelOffTime = wheelOffTime;
-        Metrics.estimationTotal.inc();
     }
 
     public Date getWheelOffTime() {

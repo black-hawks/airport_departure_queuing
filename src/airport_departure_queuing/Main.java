@@ -1,7 +1,6 @@
 package airport_departure_queuing;
 
 import airport_departure_queuing.common.Constants;
-import airport_departure_queuing.common.Metrics;
 import airport_departure_queuing.common.Simulator;
 import airport_departure_queuing.common.Utils;
 import airport_departure_queuing.flight.Flight;
@@ -40,8 +39,6 @@ public class Main {
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
-        } finally {
-            Metrics.dumpMetrics();
         }
     }
 }
