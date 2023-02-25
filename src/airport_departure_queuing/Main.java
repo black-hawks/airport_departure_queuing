@@ -1,6 +1,7 @@
 package airport_departure_queuing;
 
 import airport_departure_queuing.common.Constants;
+import airport_departure_queuing.common.Metrics;
 import airport_departure_queuing.common.Simulator;
 import airport_departure_queuing.common.Utils;
 import airport_departure_queuing.flight.Flight;
@@ -11,10 +12,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.Duration;
 import java.util.Date;
-//import java.util.logging.Logger;
 
 public class Main {
-//    static Logger logger = Logger.getLogger(Main.class.getName());
+//    static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         Duration timeIncrement = Duration.ofMinutes(1);
@@ -40,6 +40,8 @@ public class Main {
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
+        } finally {
+            Metrics.dumpMetrics();
         }
     }
 }
