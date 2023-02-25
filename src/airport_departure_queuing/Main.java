@@ -1,11 +1,11 @@
 package airport_departure_queuing;
 
-import airport_departure_queuing.common.Constants;
-import airport_departure_queuing.common.Simulator;
-import airport_departure_queuing.flight.Flight;
-import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.flight.FlightReader;
 import airport_departure_queuing.queue.PriorityQueue;
+import airport_departure_queuing.scheduler.DepartureScheduler;
+import airport_departure_queuing.scheduler.TaxiScheduler;
+import airport_departure_queuing.util.Constants;
+import airport_departure_queuing.util.Simulator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,24 +21,20 @@ public class Main {
         Duration timeIncrement = Duration.ofMinutes(1);
         try {
             FlightReader reader = new FlightReader(Constants.dataFilePath);
-            long startTimestamp = reader.getDate();
-            Simulator simulator = new Simulator(startTimestamp, timeIncrement);
+            Simulator simulator = new Simulator(reader.getDate(), timeIncrement);
+
+            TaxiScheduler taxiScheduler = new TaxiScheduler(taxi, reader);
+            DepartureScheduler departureScheduler = new DepartureScheduler(taxi);
             while (true) {
                 long pushbackTimestamp = reader.getDate();
                 if (pushbackTimestamp == -1) {
                     break;
                 }
                 long currentTimestamp = simulator.getCurrentTimestamp();
-                if (pushbackTimestamp <= currentTimestamp) {
-                    Flight flight = reader.getFlight();
-                    long wheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(flight);
-                    flight.setWheelOffTimestamp(wheelOffTimestamp);
-                    logger.debug("Processing " + flight);
-                    taxi.addFlight(flight);
-                }
+                taxiScheduler.schedule(currentTimestamp);
+                departureScheduler.schedule(currentTimestamp);
                 simulator.simulateTime();
             }
-
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }

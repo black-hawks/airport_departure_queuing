@@ -1,4 +1,4 @@
-package airport_departure_queuing.common;
+package airport_departure_queuing.util;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

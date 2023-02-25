@@ -1,7 +1,7 @@
 package airport_departure_queuing.flight;
 
-import airport_departure_queuing.common.CSVReader;
-import airport_departure_queuing.common.Constants;
+import airport_departure_queuing.util.CSVReader;
+import airport_departure_queuing.util.Constants;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

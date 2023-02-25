@@ -1,8 +1,8 @@
 package airport_departure_queuing.queue;
 
-import airport_departure_queuing.common.Constants;
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
+import airport_departure_queuing.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,5 +57,14 @@ public class PriorityQueue extends Queue {
         }
     }
 
-
+    public String toString() {
+        String result = "Queue{";
+        Node currNode = headNode;
+        while (currNode != null) {
+            result += currNode.flight.getAirline() + ",";
+            currNode = currNode.nextNode;
+        }
+        result += "}";
+        return result;
+    }
 }

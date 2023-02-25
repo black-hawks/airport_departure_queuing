@@ -1,4 +1,4 @@
-package airport_departure_queuing.common;
+package airport_departure_queuing.util;
 
 public class Constants {
     public static String dataFilePath = "data1.csv";
