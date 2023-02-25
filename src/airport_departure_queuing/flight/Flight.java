@@ -4,11 +4,11 @@ import java.time.Duration;
 import java.util.Date;
 
 public class Flight {
-    private Date pushbackTime;
-    private String airline;
-    private Duration unimpededTime;
-    private Duration taxiOutTime;
-    private Duration delay;
+    private final Date pushbackTime;
+    private final String airline;
+    private final Duration unimpededTime;
+    private final Duration taxiOutTime;
+    private final Duration delay;
     private Date wheelOffTime;
 
     public Flight(Date pushbackTime, String airline, Duration unimpededTime, Duration taxiOutTime, Duration delay) {

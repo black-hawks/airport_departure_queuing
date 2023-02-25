@@ -6,15 +6,16 @@ import airport_departure_queuing.common.Utils;
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.flight.FlightReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.Duration;
 import java.util.Date;
-//import java.util.logging.Logger;
 
 public class Main {
-//    static Logger logger = Logger.getLogger(Main.class.getName());
+    static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
         Duration timeIncrement = Duration.ofMinutes(1);
@@ -32,7 +33,7 @@ public class Main {
                     Flight flight = reader.getFlight();
                     Date wheelOffTime = FlightEstimator.estimateTakeOffTime(flight);
                     flight.setWheelOffTime(wheelOffTime);
-                    System.out.println(wheelOffTime);
+                    logger.debug(String.valueOf(wheelOffTime));
                     // enqueue to first queue
                 }
                 simulator.simulateTime();
