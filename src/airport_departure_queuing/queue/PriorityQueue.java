@@ -28,19 +28,20 @@ public class PriorityQueue extends Queue {
             int count = 1;
             if (flight.getWheelOffTimestamp() < currNode.flight.getWheelOffTimestamp()) {
                 insertAtStart(flight);
-                recalculateAlphaRT(headNode);
+                recalculateAlphaRT(currNode);
             } else {
                 while (currNode.nextNode != null && currNode.nextNode.flight.getWheelOffTimestamp() < flight.getWheelOffTimestamp()) {
                     currNode = currNode.nextNode;
                     count++;
                 }
 
-                long newWheelOffTimestamp = estimateWheelOffTimestamp(flight, count);
+                long newWheelOffTimestamp = estimateWheelOffTimestamp(flight, Constants.alpha * count);
+                logger.debug(newNode.flight.getAirline() + " Wheel off changed from "
+                        + new Date(flight.getWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
                 newNode.flight.setWheelOffTimestamp(newWheelOffTimestamp);
-                logger.debug("Wheel off changed to " + new Date(newWheelOffTimestamp) + " === " + flight);
                 newNode.nextNode = currNode.nextNode;
                 currNode.nextNode = newNode;
-                recalculateAlphaRT(newNode);
+                recalculateAlphaRT(newNode.nextNode);
             }
         }
     }
@@ -48,9 +49,13 @@ public class PriorityQueue extends Queue {
     public void recalculateAlphaRT(Node newNode) {
         Node currNode = newNode;
         while (currNode != null) {
-            long newWheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(newNode.flight, Constants.alpha);
+            long newWheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(currNode.flight, Constants.alpha);
+            logger.debug("Re - " + currNode.flight.getAirline() + " Wheel off changed from "
+                    + new Date(currNode.flight.getWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
             currNode.flight.setWheelOffTimestamp(newWheelOffTimestamp);
             currNode = currNode.nextNode;
         }
     }
+
+
 }

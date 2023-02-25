@@ -25,7 +25,8 @@ public class FlightReader extends CSVReader {
             return -1;
         }
         this.br.reset();
-        return new SimpleDateFormat(Constants.flightDateFormat).parse(line[0]).getTime();
+//        return new SimpleDateFormat(Constants.flightDateFormat).parse(line[0]).getTime();
+        return new SimpleDateFormat(Constants.flightDateFormat2).parse(line[6]).getTime();
     }
 
     public Flight getFlight() throws IOException, ParseException {
@@ -33,12 +34,19 @@ public class FlightReader extends CSVReader {
         if (line == null) {
             return null;
         }
+//        return new Flight(
+//                new SimpleDateFormat(Constants.flightDateFormat).parse(line[0]).getTime(),
+//                line[1],
+//                Duration.ofSeconds(Integer.parseInt(line[3])),
+//                Duration.ofSeconds(Integer.parseInt(line[5])),
+//                Duration.ofSeconds(Integer.parseInt(line[6]))
+//        );
         return new Flight(
-                new SimpleDateFormat(Constants.flightDateFormat).parse(line[0]).getTime(),
+                new SimpleDateFormat(Constants.flightDateFormat2).parse(line[6]).getTime(),
                 line[1],
                 Duration.ofSeconds(Integer.parseInt(line[3])),
                 Duration.ofSeconds(Integer.parseInt(line[5])),
-                Duration.ofSeconds(Integer.parseInt(line[6]))
+                Duration.ofSeconds(Integer.parseInt(line[7]))
         );
     }
 }
