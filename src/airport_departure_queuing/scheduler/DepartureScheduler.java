@@ -10,14 +10,14 @@
  */
 package airport_departure_queuing.scheduler;
 
-import airport_departure_queuing.queue.priorityQueue.PriorityQueue;
+import airport_departure_queuing.fixedsizeQueue.FixedSizeQueue;
 import airport_departure_queuing.flight.Flight;
-import airport_departure_queuing.queue.fixedsizeQueue.FixedSizeQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import airport_departure_queuing.priorityQueue.PriorityQueue;
+
+import java.util.logging.Logger;
 
 public class DepartureScheduler implements Scheduler {
-    static Logger logger = LoggerFactory.getLogger(DepartureScheduler.class);
+    static Logger logger = Logger.getLogger(DepartureScheduler.class.getName());
     private final FixedSizeQueue departure;
     private final PriorityQueue taxi;
 
@@ -48,7 +48,7 @@ public class DepartureScheduler implements Scheduler {
             } else {
                 break;
             }
-            logger.debug(departure.toString());
+            logger.info(departure.toString());
         }
     }
 }

@@ -6,18 +6,17 @@
  */
 package airport_departure_queuing.scheduler;
 
-import airport_departure_queuing.queue.priorityQueue.PriorityQueue;
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.flight.FlightReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import airport_departure_queuing.priorityQueue.PriorityQueue;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 public class TaxiScheduler implements Scheduler {
-    static Logger logger = LoggerFactory.getLogger(TaxiScheduler.class);
+    static Logger logger = Logger.getLogger(TaxiScheduler.class.getName());
     private final FlightReader reader;
     private final PriorityQueue taxi;
 
@@ -48,9 +47,9 @@ public class TaxiScheduler implements Scheduler {
             long wheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(flight);
             flight.setExpectedWheelOffTimestamp(wheelOffTimestamp);
             flight.setActualWheelOffTimestamp(wheelOffTimestamp);
-            logger.debug("Processing " + flight.toShortString());
+            logger.info("Processing " + flight.toShortString());
             taxi.enqueue(flight);
-            logger.debug(taxi.toString());
+            logger.info(taxi.toString());
         }
     }
 }

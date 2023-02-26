@@ -2,7 +2,7 @@
 
  Represents a doubly linked list of Flight objects, ordered by priority.
  */
-package airport_departure_queuing.queue.priorityQueue;
+package airport_departure_queuing.priorityQueue;
 
 import airport_departure_queuing.flight.Flight;
 

@@ -6,7 +6,7 @@
  If a new flight has the same actual wheel-off time as the current first flight in the queue,
  its actual wheel-off time will be delayed by 1 minute.
  */
-package airport_departure_queuing.queue.fixedsizeQueue;
+package airport_departure_queuing.fixedsizeQueue;
 
 import airport_departure_queuing.flight.Flight;
 

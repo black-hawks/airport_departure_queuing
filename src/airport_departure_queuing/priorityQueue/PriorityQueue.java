@@ -3,7 +3,7 @@
  A priority queue that stores flights in a doubly linked list and sorts them based on their actual wheel-off timestamp.
  The queue is sorted in descending order, i.e., the flight with the latest actual wheel-off timestamp has the highest priority.
  */
-package airport_departure_queuing.queue.priorityQueue;
+package airport_departure_queuing.priorityQueue;
 
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;

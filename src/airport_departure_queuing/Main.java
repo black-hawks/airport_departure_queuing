@@ -7,27 +7,27 @@
  */
 package airport_departure_queuing;
 
-import airport_departure_queuing.queue.priorityQueue.PriorityQueue;
+import airport_departure_queuing.fixedsizeQueue.FixedSizeQueue;
 import airport_departure_queuing.flight.FlightReader;
-import airport_departure_queuing.queue.fixedsizeQueue.FixedSizeQueue;
+import airport_departure_queuing.priorityQueue.PriorityQueue;
 import airport_departure_queuing.scheduler.DepartureScheduler;
 import airport_departure_queuing.scheduler.TaxiScheduler;
 import airport_departure_queuing.scheduler.WheelOffScheduler;
 import airport_departure_queuing.util.Constants;
 import airport_departure_queuing.util.Simulator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.Duration;
+import java.util.logging.Logger;
 
 public class Main {
-    static Logger logger = LoggerFactory.getLogger(Main.class);
+    static Logger logger = Logger.getLogger(Main.class.getName());
     static PriorityQueue taxi = new PriorityQueue();
     static FixedSizeQueue departure = new FixedSizeQueue(5);
 
     public static void main(String[] args) {
+        logger.info("Simulation started ...");
         long start = System.currentTimeMillis();
         Duration timeIncrement = Duration.ofMinutes(1);
         try {

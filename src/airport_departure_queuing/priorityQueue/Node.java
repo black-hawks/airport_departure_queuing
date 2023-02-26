@@ -2,7 +2,7 @@
 
  Represents a node in a doubly linked list.
  */
-package airport_departure_queuing.queue.priorityQueue;
+package airport_departure_queuing.priorityQueue;
 
 import airport_departure_queuing.flight.Flight;
 

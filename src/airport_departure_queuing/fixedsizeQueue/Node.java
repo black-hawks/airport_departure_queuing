@@ -2,7 +2,7 @@
 
  Represents a node in a linked list used to implement a queue of flights departing from an airport.
  */
-package airport_departure_queuing.queue.fixedsizeQueue;
+package airport_departure_queuing.fixedsizeQueue;
 
 import airport_departure_queuing.flight.Flight;
 

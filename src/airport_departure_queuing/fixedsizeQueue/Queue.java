@@ -1,4 +1,4 @@
-package airport_departure_queuing.queue.fixedsizeQueue;
+package airport_departure_queuing.fixedsizeQueue;
 
 import airport_departure_queuing.flight.Flight;
 

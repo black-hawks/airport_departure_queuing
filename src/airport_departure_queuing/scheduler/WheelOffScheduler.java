@@ -6,15 +6,15 @@
  */
 package airport_departure_queuing.scheduler;
 
+import airport_departure_queuing.fixedsizeQueue.FixedSizeQueue;
 import airport_departure_queuing.flight.Flight;
-import airport_departure_queuing.queue.fixedsizeQueue.FixedSizeQueue;
 import airport_departure_queuing.util.Metrics;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.util.logging.Logger;
 
 public class WheelOffScheduler implements Scheduler {
 
-    static Logger logger = LoggerFactory.getLogger(WheelOffScheduler.class);
+    static Logger logger = Logger.getLogger(WheelOffScheduler.class.getName());
     FixedSizeQueue departure;
     Metrics metrics;
 
@@ -42,7 +42,7 @@ public class WheelOffScheduler implements Scheduler {
             departure.removeFlight();
 //            departingFlight.setActualWheelOffTimestamp(currentTimestamp);
             metrics.recordFlight(departingFlight);
-            logger.debug("Wheel off: " + departingFlight.toShortString());
+            logger.info("Wheel off: " + departingFlight.toShortString());
         }
     }
 }
