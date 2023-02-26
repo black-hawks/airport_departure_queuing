@@ -5,6 +5,7 @@ import airport_departure_queuing.flight.Flight;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Metrics {
@@ -15,14 +16,16 @@ public class Metrics {
     }
 
     public void recordFlight(Flight flight) {
-        Date pushbackTime = new Date(flight.getPushbackTimestamp());
+        String pushbackTime = new SimpleDateFormat(Constants.flightExcelDateFormat).format(new Date(flight.getPushbackTimestamp()));
         Date expectedWheelOffTime = new Date(flight.getExpectedWheelOffTimestamp());
         Date actualWheelOffTime = new Date(flight.getActualWheelOffTimestamp());
         long delayInSeconds = (flight.getActualWheelOffTimestamp() - flight.getExpectedWheelOffTimestamp()) / 1000;
+        long totalTravelTime = (flight.getActualWheelOffTimestamp() - flight.getPushbackTimestamp()) / 1000;
         String line = String.join(",",
-                pushbackTime.toString(),
+                pushbackTime,
                 expectedWheelOffTime.toString(),
                 actualWheelOffTime.toString(),
+                String.valueOf(totalTravelTime),
                 String.valueOf(delayInSeconds)
         );
         writeToCsv(line);

@@ -21,6 +21,7 @@ public class Main {
     static FixedSizeQueue departure = new FixedSizeQueue(5);
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         Duration timeIncrement = Duration.ofMinutes(1);
         try {
             FlightReader reader = new FlightReader(Constants.dataFilePath);
@@ -49,6 +50,7 @@ public class Main {
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+        logger.info("Time took: " + (System.currentTimeMillis() - start));
     }
 }
 

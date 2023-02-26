@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 public class DepartureScheduler implements Scheduler {
     static Logger logger = LoggerFactory.getLogger(DepartureScheduler.class);
     private final FixedSizeQueue departure;
-
     private final PriorityQueue taxi;
 
     public DepartureScheduler(PriorityQueue taxi, FixedSizeQueue departure) {
