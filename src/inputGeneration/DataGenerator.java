@@ -3,7 +3,7 @@
  * The data consists of various attributes such as airline, gate number, taxi-out time, push back time, delay, etc.
  */
 
-package input_generation;
+package inputGeneration;
 
 import java.io.FileWriter;
 import java.io.IOException;

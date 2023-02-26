@@ -5,7 +5,7 @@
     The mergeSort method performs the merge sort algorithm on a list of CSV entries.
     The merge method merges two sublists of CSV entries into a single sorted list.
     */
-package input_generation;
+package inputGeneration;
 
 import java.io.*;
 import java.util.*;
