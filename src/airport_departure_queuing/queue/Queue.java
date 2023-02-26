@@ -59,4 +59,15 @@ public class Queue {
         }
         System.out.println("\n");
     }
+
+    public String toString() {
+        String result = this.getClass().getCanonicalName() + "{";
+        Node currNode = headNode;
+        while (currNode != null) {
+            result += currNode.flight.getAirline() + ",";
+            currNode = currNode.nextNode;
+        }
+        result += "}";
+        return result;
+    }
 }

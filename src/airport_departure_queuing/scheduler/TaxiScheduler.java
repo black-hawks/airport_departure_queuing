@@ -10,16 +10,16 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class TaxiScheduler extends Scheduler {
+public class TaxiScheduler implements Scheduler {
     static Logger logger = LoggerFactory.getLogger(TaxiScheduler.class);
     private final FlightReader reader;
+    private final PriorityQueue taxi;
 
     public TaxiScheduler(PriorityQueue taxi, FlightReader reader) {
-        super(taxi);
         this.reader = reader;
+        this.taxi = taxi;
     }
 
-    @Override
     public void schedule(long currentTimestamp) throws IOException, ParseException {
         long pushbackTimestamp = reader.getDate();
         // While loop to fetch all flights at currentTimestamp
@@ -28,7 +28,7 @@ public class TaxiScheduler extends Scheduler {
             long wheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(flight);
             flight.setExpectedWheelOffTimestamp(wheelOffTimestamp);
             flight.setActualWheelOffTimestamp(wheelOffTimestamp);
-            logger.debug("Processing " + flight);
+            logger.debug("Processing " + flight.toShortString());
             taxi.addFlight(flight);
             logger.debug(taxi.toString());
         }

@@ -56,15 +56,4 @@ public class PriorityQueue extends Queue {
             currNode = currNode.nextNode;
         }
     }
-
-    public String toString() {
-        String result = "Queue{";
-        Node currNode = headNode;
-        while (currNode != null) {
-            result += currNode.flight.getAirline() + ",";
-            currNode = currNode.nextNode;
-        }
-        result += "}";
-        return result;
-    }
 }
