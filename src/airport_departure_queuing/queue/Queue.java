@@ -61,14 +61,18 @@ public class Queue {
     }
 
     public String toString() {
-        String result = this.getClass().getCanonicalName() + "{";
-        Node currNode = headNode;
-        while (currNode != null) {
-            result += currNode.flight.getAirline() + ",";
-            currNode = currNode.nextNode;
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node current = headNode;
+        while (current != null) {
+            sb.append(current.flight.getAirline());
+            current = current.nextNode;
+            if (current != null) {
+                sb.append(", ");
+            }
         }
-        result += "}";
-        return result;
+        sb.append("]");
+        return sb.toString();
     }
 
     public int size() {

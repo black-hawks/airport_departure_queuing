@@ -53,4 +53,20 @@ public class PriorityQueue {
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        Node current = list.getFirstNode();
+        while (current != null) {
+            sb.append(current.flight.getAirline());
+            current = current.next;
+            if (current != null) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
 }

@@ -37,11 +37,12 @@ public class Flight {
     }
 
     public String toShortString() {
-        return "Flight{"
+        return "Flight {"
                 + '\'' + airline + '\''
                 + ", pushback=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(pushbackTimestamp))
                 + ", expected=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(expectedWheelOffTimestamp))
-                + ", actual=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(actualWheelOffTimestamp));
+                + ", actual=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(actualWheelOffTimestamp))
+                + '}';
     }
 
     public long getPushbackTimestamp() {

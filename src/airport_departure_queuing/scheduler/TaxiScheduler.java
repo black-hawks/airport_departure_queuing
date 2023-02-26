@@ -30,7 +30,7 @@ public class TaxiScheduler implements Scheduler {
             flight.setActualWheelOffTimestamp(wheelOffTimestamp);
             logger.debug("Processing " + flight.toShortString());
             taxi.enqueue(flight);
-            logger.debug(taxi.toString());
+            logger.debug("Taxi Priority Queue " + taxi);
         }
     }
 }

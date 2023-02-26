@@ -19,11 +19,8 @@ public class WheelOffScheduler implements Scheduler {
 
     public void schedule(long currentTimestamp) {
         Flight departingFlight = departure.peek();
-        // ACTUAL WHEEL OFF TIMESTAMP IS CURRENT TIMESTAMP
         if (departingFlight != null && departingFlight.getActualWheelOffTimestamp() <= currentTimestamp) {
-//      departingFlight.setActualWheelOffTimestamp(currentTimestamp);
             departure.removeFlight();
-//            departingFlight.setActualWheelOffTimestamp(currentTimestamp);
             metrics.recordFlight(departingFlight);
             logger.debug("Wheel off: " + departingFlight.toShortString());
         }
