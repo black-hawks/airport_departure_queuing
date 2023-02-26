@@ -26,6 +26,8 @@ public class DepartureScheduler extends Scheduler {
         while(taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
             if(departure.addFlight(taxi.peek())) {
                 taxi.deleteAtStart();
+            } else {
+                break;
             }
             logger.debug(taxi.toString());
         }
