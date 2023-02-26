@@ -1,8 +1,8 @@
 package airport_departure_queuing;
 
+import airport_departure_queuing.doublyPriorityQueue.PriorityQueue;
 import airport_departure_queuing.flight.FlightReader;
 import airport_departure_queuing.queue.FixedSizeQueue;
-import airport_departure_queuing.queue.PriorityQueue;
 import airport_departure_queuing.scheduler.DepartureScheduler;
 import airport_departure_queuing.scheduler.TaxiScheduler;
 import airport_departure_queuing.scheduler.WheelOffScheduler;
