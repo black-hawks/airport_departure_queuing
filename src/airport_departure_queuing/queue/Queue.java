@@ -38,8 +38,8 @@ public class Queue {
     }
 
     public void deleteAtStart() {
+        Node currNode = headNode;
         if (headNode != null) {
-            Node currNode = headNode;
             headNode = currNode.nextNode;
         } else {
             System.out.println("There are no elements in the Queue.Queue");
