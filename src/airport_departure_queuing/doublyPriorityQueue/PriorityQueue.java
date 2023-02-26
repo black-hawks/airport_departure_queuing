@@ -4,8 +4,6 @@ import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.util.Constants;
 
-import java.util.NoSuchElementException;
-
 public class PriorityQueue {
 
     private final DoublyLinkedList list;
@@ -36,14 +34,14 @@ public class PriorityQueue {
 
     public Flight dequeue() {
         if (isEmpty()) {
-            throw new NoSuchElementException();
+            return null;
         }
         return list.removeFirst();
     }
 
     public Flight peek() {
         if (isEmpty()) {
-            throw new NoSuchElementException();
+            return null;
         }
         return list.getFirstNode().flight;
     }

@@ -1,9 +1,9 @@
 package airport_departure_queuing.scheduler;
 
+import airport_departure_queuing.doublyPriorityQueue.PriorityQueue;
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.flight.FlightReader;
-import airport_departure_queuing.queue.PriorityQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class TaxiScheduler implements Scheduler {
             flight.setExpectedWheelOffTimestamp(wheelOffTimestamp);
             flight.setActualWheelOffTimestamp(wheelOffTimestamp);
             logger.debug("Processing " + flight.toShortString());
-            taxi.addFlight(flight);
+            taxi.enqueue(flight);
             logger.debug(taxi.toString());
         }
     }
