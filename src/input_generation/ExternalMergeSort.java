@@ -1,9 +1,27 @@
+/**
+
+    The ExternalMergeSort class provides a method to sort a large CSV file using an external merge sort algorithm.
+    The sort method reads in the input CSV file, divides it into smaller chunks, sorts them, and merges them back into a single sorted file.
+    The mergeSort method performs the merge sort algorithm on a list of CSV entries.
+    The merge method merges two sublists of CSV entries into a single sorted list.
+    */
 package input_generation;
 
 import java.io.*;
 import java.util.*;
 
+/**
+ * @author ravi
+ *
+ */
 public class ExternalMergeSort {
+	/**
+	 * Sorts the input CSV file using external merge sort and writes the sorted data to the output CSV file.
+	 * 
+	 * @param inputFile the path of the input CSV file
+	 * @param outputFile the path of the output CSV file
+	 * @throws IOException if an I/O error occurs while reading or writing the files
+	 */
 
     // Divide the input file into smaller chunks, sort them, and merge them back
     public void sort(String inputFile, String outputFile) throws IOException{
@@ -43,7 +61,14 @@ public class ExternalMergeSort {
 
     } 
     
-    // Merge sort implementation for a list of CSV entries
+    /**
+     * Sorts the given list of CSV entries using the merge sort algorithm.
+     * 
+     * @param entries the list of CSV entries to be sorted
+     * @param left the left index of the sublist to be sorted
+     * @param right the right index of the sublist to be sorted
+     */
+    
     public static void mergeSort(List<String[]> entries, int left, int right) {
         if (left < right) {
             int mid = left + (right - left) / 2;
@@ -53,7 +78,14 @@ public class ExternalMergeSort {
         }
     }
 
-    // Merge two sublists of CSV entries into a single sorted list
+    /**
+     * Merges two sorted sublists of CSV entries into a single sorted list.
+     * 
+     * @param entries the list of CSV entries to merge
+     * @param left the left index of the first sublist
+     * @param mid the right index of the first sublist and the left index of the second sublist
+     * @param right the right index of the second sublist
+     */
     public static void merge(List<String[]> entries, int left, int mid, int right) {
         List<String[]> leftList = new ArrayList<>(entries.subList(left, mid + 1));
         List<String[]> rightList = new ArrayList<>(entries.subList(mid + 1, right + 1));
