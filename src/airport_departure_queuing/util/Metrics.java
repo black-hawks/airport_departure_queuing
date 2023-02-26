@@ -31,6 +31,16 @@ public class Metrics {
         writeToCsv(line);
     }
 
+    public void recordQueueState(long time, int queueSize, long duration) {
+        String currentTime = new SimpleDateFormat(Constants.flightExcelDateFormat).format(new Date(time));
+        String line = String.join(",",
+                currentTime,
+                String.valueOf(queueSize),
+                String.valueOf(duration)
+        );
+        writeToCsv(line);
+    }
+
     private void writeToCsv(String line) {
         try {
             PrintWriter writer = new PrintWriter(new FileWriter(this.filename, true));
