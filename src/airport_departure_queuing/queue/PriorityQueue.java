@@ -6,8 +6,6 @@ import airport_departure_queuing.util.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
-
 import static airport_departure_queuing.flight.FlightEstimator.estimateWheelOffTimestamp;
 
 public class PriorityQueue extends Queue {
@@ -36,8 +34,8 @@ public class PriorityQueue extends Queue {
                 }
 
                 long newWheelOffTimestamp = estimateWheelOffTimestamp(flight, Constants.alpha * count);
-                logger.debug(newNode.flight.getAirline() + " Wheel off changed from "
-                        + new Date(flight.getActualWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
+//                logger.debug(newNode.flight.getAirline() + " Wheel off changed from "
+//                        + new Date(flight.getActualWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
                 newNode.flight.setActualWheelOffTimestamp(newWheelOffTimestamp);
                 newNode.nextNode = currNode.nextNode;
                 currNode.nextNode = newNode;
@@ -50,8 +48,8 @@ public class PriorityQueue extends Queue {
         Node currNode = newNode;
         while (currNode != null) {
             long newWheelOffTimestamp = FlightEstimator.estimateWheelOffTimestamp(currNode.flight, Constants.alpha);
-            logger.debug("Re - " + currNode.flight.getAirline() + " Wheel off changed from "
-                    + new Date(currNode.flight.getActualWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
+//            logger.debug("Re - " + currNode.flight.getAirline() + " Wheel off changed from "
+//                    + new Date(currNode.flight.getActualWheelOffTimestamp()) + " to " + new Date(newWheelOffTimestamp));
             currNode.flight.setActualWheelOffTimestamp(newWheelOffTimestamp);
             currNode = currNode.nextNode;
         }
