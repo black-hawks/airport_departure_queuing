@@ -21,8 +21,9 @@ public class DepartureScheduler extends Scheduler {
 
     @Override
     public void schedule(long currentTimestamp) {
-        if(taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
-
+//        there might be a possibility where at the same currentTimestamp, there is more than one flight,
+//        you need to try to enqueue the flight one by one in the same loop.
+        while(taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
             if(departure.addFlight(taxi.peek())) {
                 taxi.deleteAtStart();
             }
