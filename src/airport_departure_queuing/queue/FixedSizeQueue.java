@@ -46,4 +46,9 @@ public class FixedSizeQueue extends Queue {
         currentQueueLength++;
         return true;
     }
+
+    public void removeFlight() {
+        deleteAtStart();
+        currentQueueLength--;
+    }
 }

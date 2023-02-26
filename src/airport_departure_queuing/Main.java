@@ -40,6 +40,12 @@ public class Main {
                 wheelOffScheduler.schedule(currentTimestamp);
                 simulator.simulateTime();
             }
+            while (taxi.peek() != null || departure.peek() != null) {
+                long currentTimestamp = simulator.getCurrentTimestamp();
+                departureScheduler.schedule(currentTimestamp);
+                wheelOffScheduler.schedule(currentTimestamp);
+                simulator.simulateTime();
+            }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }

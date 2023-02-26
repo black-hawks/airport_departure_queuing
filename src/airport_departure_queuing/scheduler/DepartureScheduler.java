@@ -1,35 +1,31 @@
 package airport_departure_queuing.scheduler;
 
-import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.queue.FixedSizeQueue;
 import airport_departure_queuing.queue.PriorityQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DepartureScheduler extends Scheduler {
+public class DepartureScheduler implements Scheduler {
     static Logger logger = LoggerFactory.getLogger(DepartureScheduler.class);
-    FixedSizeQueue departure;
+    private final FixedSizeQueue departure;
 
-    public DepartureScheduler(PriorityQueue taxi) {
-        super(taxi);
-    }
+    private final PriorityQueue taxi;
 
     public DepartureScheduler(PriorityQueue taxi, FixedSizeQueue departure) {
-        super(taxi);
+        this.taxi = taxi;
         this.departure = departure;
     }
 
-    @Override
     public void schedule(long currentTimestamp) {
 //        there might be a possibility where at the same currentTimestamp, there is more than one flight,
 //        you need to try to enqueue the flight one by one in the same loop.
-        while(taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
-            if(departure.addFlight(taxi.peek())) {
+        while (taxi.peek() != null && taxi.peek().getActualWheelOffTimestamp() <= currentTimestamp) {
+            if (departure.addFlight(taxi.peek())) {
                 taxi.deleteAtStart();
             } else {
                 break;
             }
-            logger.debug(taxi.toString());
+            logger.debug(departure.toString());
         }
     }
 }
