@@ -70,4 +70,14 @@ public class Queue {
         result += "}";
         return result;
     }
+
+    public int size() {
+        int count = 0;
+        Node currNode = headNode;
+        while (currNode != null) {
+            count++;
+            currNode = currNode.nextNode;
+        }
+        return count;
+    }
 }
