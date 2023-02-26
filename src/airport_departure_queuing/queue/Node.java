@@ -12,4 +12,9 @@ public class Node {
         this.flight = flight;
         this.nextNode = null;
     }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
 }

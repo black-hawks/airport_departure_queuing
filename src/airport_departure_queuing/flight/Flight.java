@@ -1,5 +1,8 @@
 package airport_departure_queuing.flight;
 
+import airport_departure_queuing.util.Constants;
+
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 
@@ -31,6 +34,14 @@ public class Flight {
                 + ", expectedWheelOffTimestamp=" + new Date(expectedWheelOffTimestamp)
                 + ", actualWheelOffTimestamp=" + new Date(actualWheelOffTimestamp)
                 + '}';
+    }
+
+    public String toShortString() {
+        return "Flight{"
+                + '\'' + airline + '\''
+                + ", pushback=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(pushbackTimestamp))
+                + ", expected=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(expectedWheelOffTimestamp))
+                + ", actual=" + new SimpleDateFormat(Constants.flightDateFormat2).format(new Date(actualWheelOffTimestamp));
     }
 
     public long getPushbackTimestamp() {

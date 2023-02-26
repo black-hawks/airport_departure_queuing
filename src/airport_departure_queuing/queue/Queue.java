@@ -38,8 +38,8 @@ public class Queue {
     }
 
     public void deleteAtStart() {
+        Node currNode = headNode;
         if (headNode != null) {
-            Node currNode = headNode;
             headNode = currNode.nextNode;
         } else {
             System.out.println("There are no elements in the Queue.Queue");
@@ -58,5 +58,16 @@ public class Queue {
             System.out.print(currNode.flight.getAirline());
         }
         System.out.println("\n");
+    }
+
+    public String toString() {
+        String result = this.getClass().getCanonicalName() + "{";
+        Node currNode = headNode;
+        while (currNode != null) {
+            result += currNode.flight.getAirline() + ",";
+            currNode = currNode.nextNode;
+        }
+        result += "}";
+        return result;
     }
 }
