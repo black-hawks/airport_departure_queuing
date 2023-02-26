@@ -1,6 +1,12 @@
+/**
+
+ The TaxiScheduler class is responsible for scheduling the taxis at the airport.
+ It reads the flight information from the FlightReader and enqueues them in the PriorityQueue
+ according to their expected wheel-off time.
+ */
 package airport_departure_queuing.scheduler;
 
-import airport_departure_queuing.doublyPriorityQueue.PriorityQueue;
+import airport_departure_queuing.queue.priorityQueue.PriorityQueue;
 import airport_departure_queuing.flight.Flight;
 import airport_departure_queuing.flight.FlightEstimator;
 import airport_departure_queuing.flight.FlightReader;
@@ -15,11 +21,25 @@ public class TaxiScheduler implements Scheduler {
     private final FlightReader reader;
     private final PriorityQueue taxi;
 
+    /**
+     * Constructor for the TaxiScheduler class.
+     *
+     * @param taxi   The PriorityQueue containing the taxis waiting for departure.
+     * @param reader The FlightReader used to read flight information.
+     */
     public TaxiScheduler(PriorityQueue taxi, FlightReader reader) {
         this.reader = reader;
         this.taxi = taxi;
     }
 
+    /**
+     * Reads flight information from the FlightReader and enqueues them in the PriorityQueue
+     * according to their expected wheel-off time.
+     *
+     * @param currentTimestamp The current time.
+     * @throws IOException    If an I/O error occurs.
+     * @throws ParseException If the flight information is not in the expected format.
+     */
     public void schedule(long currentTimestamp) throws IOException, ParseException {
         long pushbackTimestamp = reader.getDate();
         // While loop to fetch all flights at currentTimestamp

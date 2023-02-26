@@ -4,7 +4,7 @@ The UnImpededData class represents a data object that contains the season and un
 The season and unimpeded time can be accessed through getters and can be set through the constructor.
 */
 
-package input_generation;
+package inputGeneration;
 
 /**
  * @author ravi

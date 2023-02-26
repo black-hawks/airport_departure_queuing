@@ -5,7 +5,7 @@
     The HashMap is structured such that the keys are airline names, and the values are ArrayLists of
     UnImpededData objects, each of which contains a season number and an unimpeded time.
  */
-package input_generation;
+package inputGeneration;
 
 import java.io.*;
 import java.util.ArrayList;

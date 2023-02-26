@@ -1,8 +1,15 @@
+/**
+
+ The Main class is the entry point for the airport departure queuing simulation. It reads flight data from a file,
+ creates a taxi priority queue and a fixed-size departure queue, and schedules the departure and taxi movements using
+ three schedulers: TaxiScheduler, DepartureScheduler, and WheelOffScheduler. It uses a Simulator to simulate time.
+ The program outputs the time taken to run the simulation in milliseconds.
+ */
 package airport_departure_queuing;
 
-import airport_departure_queuing.doublyPriorityQueue.PriorityQueue;
+import airport_departure_queuing.queue.priorityQueue.PriorityQueue;
 import airport_departure_queuing.flight.FlightReader;
-import airport_departure_queuing.queue.FixedSizeQueue;
+import airport_departure_queuing.queue.fixedsizeQueue.FixedSizeQueue;
 import airport_departure_queuing.scheduler.DepartureScheduler;
 import airport_departure_queuing.scheduler.TaxiScheduler;
 import airport_departure_queuing.scheduler.WheelOffScheduler;
@@ -53,6 +60,3 @@ public class Main {
         logger.info("Time took: " + (System.currentTimeMillis() - start));
     }
 }
-
-// Departure queue and its scheduling
-// Metrics collection and graphs, store expected and actual estimations, time for entire simulation

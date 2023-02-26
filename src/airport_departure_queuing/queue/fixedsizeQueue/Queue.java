@@ -1,21 +1,31 @@
-package airport_departure_queuing.queue;
+package airport_departure_queuing.queue.fixedsizeQueue;
 
 import airport_departure_queuing.flight.Flight;
 
 public class Queue {
 
     Node headNode;
-
+    /**
+     * Constructs an empty Queue object with a null headNode.
+     */
     public Queue() {
         headNode = null;
     }
 
+    /**
+     * Inserts a new Flight object at the start of the Queue.
+     * @param flight the Flight object to be inserted
+     */
     public void insertAtStart(Flight flight) {
         Node newNode = new Node(flight);
         newNode.nextNode = headNode;
         headNode = newNode;
     }
 
+    /**
+     * Inserts a new Flight object at the end of the Queue.
+     * @param flight the Flight object to be inserted
+     */
     public void insertAtEnd(Flight flight) {
         if (headNode == null) {
             insertAtStart(flight);
@@ -30,6 +40,10 @@ public class Queue {
         }
     }
 
+    /**
+     * Returns the Flight object at the head of the Queue without removing it.
+     * @return the Flight object at the head of the Queue
+     */
     public Flight peek() {
         if (headNode == null) {
             return null;
@@ -37,6 +51,9 @@ public class Queue {
         return headNode.flight;
     }
 
+    /**
+     * Deletes the Flight object at the head of the Queue.
+     */
     public void deleteAtStart() {
         Node currNode = headNode;
         if (headNode != null) {
@@ -46,6 +63,9 @@ public class Queue {
         }
     }
 
+    /**
+     * Displays the contents of the Queue on the console.
+     */
     public void display() {
         Node currNode = headNode;
         if (currNode == null) {
@@ -60,6 +80,10 @@ public class Queue {
         System.out.println("\n");
     }
 
+    /**
+     * Returns a String representation of the Queue object.
+     * @return a String representation of the Queue object
+     */
     public String toString() {
         String result = this.getClass().getCanonicalName() + "{";
         Node currNode = headNode;
@@ -71,6 +95,10 @@ public class Queue {
         return result;
     }
 
+    /**
+     * Returns the number of Flight objects in the Queue.
+     * @return the number of Flight objects in the Queue
+     */
     public int size() {
         int count = 0;
         Node currNode = headNode;
